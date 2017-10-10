@@ -1,0 +1,53 @@
+version: "3.1"
+
+services:
+
+  traefik:
+    image: traefik:1.3-alpine
+    command:
+      - --web
+      - --docker
+      - --docker.watch
+      - --docker.swarmmode
+      - --docker.domain=${DOMAIN:-mydomain.com}
+      - --docker.endpoint=unix:///var/run/docker.sock
+      - --debug=true
+      - --logLevel=DEBUG
+      - --configFile=/run/secrets/traefik.toml
+    secrets:                    # secrets block only for 'traefik' service
+      - traefik.toml
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    networks:
+      - frontend
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    deploy:
+      labels:
+        - "traefik.enable=false"
+      mode: global
+      placement:
+        constraints: [node.role==manager]
+      restart_policy:
+        condition: on-failure
+      resources:
+        limits:
+          cpus: '0.30'
+          memory: 72M
+        reservations:
+          cpus: '0.10'
+          memory: 36M
+
+secrets:                        # top level secrets block
+  traefik.toml:
+    file: traefik.toml
+
+networks:
+  backend:
+      driver: overlay
+      external: true
+  frontend:
+      driver: overlay
+      external: true
