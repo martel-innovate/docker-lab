@@ -34,7 +34,8 @@ default         *        virtualbox   Running   tcp://192.168.99.100:2376       
 
 Set-up the docker client to use ``default`` machine as environment:
 ```
-eval $(docker-machine env default)```
+eval $(docker-machine env default)
+```
 
 ## Launch your first container
 
