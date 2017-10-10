@@ -8,7 +8,8 @@ Open the following link and follow instruction according to your operating syste
 ## Verify installation
 
 Open the command line and check the version of your set-up:
-```docker --version```
+```
+docker --version```
 
 It should be 17.06+:
 ```
