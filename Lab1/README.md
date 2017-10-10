@@ -9,11 +9,13 @@ Open the following link and follow instruction according to your operating syste
 
 Open the command line and check the version of your set-up:
 ```
-docker --version```
+docker --version
+```
 
 It should be 17.06+:
 ```
-Docker version 17.06.0-ce, build 02c1d87```
+Docker version 17.06.0-ce, build 02c1d87
+```
 
 ## Create your first docker machine
 `docker-machine` is an utility to create vm including docker on different hosting solutions (e.g. Virtualbox, OpenStack, Amazon). More information here: [https://docs.docker.com/machine/](https://docs.docker.com/machine/). If you have a Linux, you need to install docker-machine.
