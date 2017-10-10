@@ -5,6 +5,11 @@ services:
     image: chicco785/friendlyhello:v1
     environment:
       - DBNAME=redis
+    healthcheck:
+      test: "curl --silent --fail localhost:80 || exit 1"
+      interval: 1m30s
+      timeout: 50s
+      retries: 5
     deploy:
       replicas: 5
       restart_policy:
