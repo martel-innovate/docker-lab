@@ -1,0 +1,27 @@
+version: "3"
+services:
+  web:
+    image: chicco785/friendlyhello:v1
+    environment:
+      - DBNAME=redis
+    links:
+      - redis
+    ports:
+      - "4000:80"
+    networks:
+      - webnet
+  redis:
+    image: redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - data:/data
+    command: redis-server --appendonly yes
+    networks:
+      - webnet
+
+networks:
+  webnet:
+
+volumes:
+  data:
