@@ -1,0 +1,25 @@
+version: "3.1"
+
+services:
+    whoami:
+      image: emilevauge/whoami
+      networks:
+        - backend
+        - frontend
+      deploy:
+        labels:
+          - "traefik.port=80"
+          - "traefik.backend=whoami"
+          - "traefik.frontend.rule=Host:whoami.mydomain.com"
+          - "traefik.backend.loadbalancer.sticky=true"
+        restart_policy:
+          condition: on-failure
+        replicas: 2
+
+networks:
+  backend:
+      driver: overlay
+      external: true
+  frontend:
+      driver: overlay
+      external: true

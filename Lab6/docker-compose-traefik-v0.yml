@@ -29,13 +29,13 @@ services:
         constraints: [node.role==manager]
       restart_policy:
         condition: on-failure
-      resources:
-        limits:
-          cpus: '0.30'
-          memory: 72M
-        reservations:
-          cpus: '0.10'
-          memory: 36M
+      # resources:
+      #   limits:
+      #     cpus: '0.30'
+      #     memory: 72M
+      #   reservations:
+      #     cpus: '0.10'
+      #     memory: 36M
 
 networks:
   backend:

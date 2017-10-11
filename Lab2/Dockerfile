@@ -10,6 +10,8 @@ ADD . /app
 # Install any needed packages specified in requirements.txt
 RUN pip install -r requirements.txt
 
+RUN apt-get update && apt-get install -y --no-install-recommends curl
+
 # Make port 80 available to the world outside this container
 EXPOSE 80
 
